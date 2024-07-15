@@ -46,7 +46,7 @@ WITH CTE_1 AS (
 									ON msg.ThreadID = thr.ThreadID
 							Group by thr.ThreadID
 							)
-		ORDER BY DateSent DESC
+		ORDER BY DateSent DESC --CTE sometime dislikes ORDER BY so probably should remove this
 		)
 	/** 
 	Union all 4 CTEs to combine the result sets into a single query
@@ -56,6 +56,6 @@ WITH CTE_1 AS (
 	UNION 
 	SELECT Task, Col1, Col2, Col3='', Col4 =''. Col5='' FROM CTE_2
 	UNION
-	SELECT Task, Col1, Col2, Col3='',Col4='', Col5='' FROM CTE_3
+	SELECT Task, Col1, Col2, Col3='',Col4='', Col5='' FROM CTE_3 ORDER BY DateSent DESC
 	UNION
 SELECT Task, Col1, Col2, Col3, Col4, Col5 FROM CTE_4
