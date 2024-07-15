@@ -13,10 +13,10 @@ WITH CTE_1 AS (
 	SELECT
 		Task = '2'
 		,Col1 = COUNT(msg.MessageID)
-		,Col2 = DATE_PART(dayofweek, DateSent)
+		,Col2 = DATEPART(weekday, DateSent)
 	FROM Messages msg
-	WHERE DATE_PART(dayofweek, DateSent) BETWEEN 1 AND 5
-	GROUP BY DATE_PART(dayofweek, DateSent)
+	WHERE DATEPART(weekday, DateSent) BETWEEN 1 AND 5
+	GROUP BY DATE_PART(weekday, DateSent)
 ), CTE_3 AS (
 	--The most recent message from each thread that has no response yet
 	SELECT DISTINCT
