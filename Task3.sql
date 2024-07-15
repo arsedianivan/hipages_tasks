@@ -9,13 +9,13 @@ WITH CTE_1 AS (
 			ON msg.UserIDSender = sender.UserID
 	Group By sender.UserID
 ),  CTE_2 AS (
-	--The total number of messages sent stratified by weekday
+	--The total number of messages sent stratified by weekday that is Monday to Friday
 	SELECT
 		Task = '2'
 		,Col1 = COUNT(msg.MessageID)
 		,Col2 = DATEPART(weekday, DateSent)
 	FROM Messages msg
-	WHERE DATEPART(weekday, DateSent) BETWEEN 1 AND 5
+	WHERE DATEPART(weekday, DateSent) BETWEEN 1 AND 5 -- this can be removed if the question meant Day of Week
 	GROUP BY DATE_PART(weekday, DateSent)
 ), CTE_3 AS (
 	--The most recent message from each thread that has no response yet
