@@ -2,7 +2,7 @@ WITH CTE_1 AS (
 	SELECT
 		Task = '1'
 		,Col1 = COUNT(msg.MessageID)
-		,Col2 = sender.UserID
+		,Col2 = sender.Name
 	FROM Messages msg
 		LEFT JOIN User sender
 			ON msg.UserIDSender = sender.UserID
